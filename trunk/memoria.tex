@@ -45,19 +45,19 @@ pdfcreator={}]{hyperref}
 \newtheorem{lemma}{Lema}%we can specify the counter in brackets
 \newtheorem{corollary}{Corolario}
 \newtheorem{theorem}{Teorema}
-%\renewcommand{\bibliographyname}{Bibliografía u otro nombre}
+%\renewcommand{\bibliographyname}{Bibliograf\'ia u otro nombre}
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%
 %Definicion de variables de la portada
 %%%%%%%%%%%%%%%%%%%%
 %% B. Nombre Institucion
 \universidad{Universidad de Chile}
-\facultad{Facultad de Ciencias Físicas y Matemáticas}
-\departamento{Departamento de Ciencias de la Computación}
+\facultad{Facultad de Ciencias F\'isicas y Matem\'aticas}
+\departamento{Departamento de Ciencias de la Computaci\'on}
 %% C. Titulo
 \title{Sanidad de Rutas Chilenas en Internet}
 %% D. Proposito titulacion
-\trabajoygrado{Memoria para optar al título de Ingeniero Civil en Computación}
+\trabajoygrado{Memoria para optar al t\'itulo de Ingeniero Civil en Computaci\'on}
 %% E. Autor
 \author{Pablo Ignacio Sep\'ulveda Rojas}
 %% F. Profesores guia, co-guia e integrantes, los 3 primeros son obligatorios
@@ -107,146 +107,202 @@ pdfcreator={}]{hyperref}
 %\listoffigures
 \end{preface}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Introducción}
+\chapter{Introducci\'on}
 Internet, llamada la red de redes, es una red global descentralizada, compuesta
-de muchas redes más pequeñas interconectadas. Una red que esté bajo el control
-de una sola organización, se llama Sistema Autónomo (Autonomous System, AS).
+de muchas redes m\'as peque\~nas interconectadas. Una red que est\'e bajo el control
+de una sola organizaci\'on, se llama Sistema Aut\'onomo (Autonomous System, AS).
 
 El proceso de ruteo dentro de un AS es llamado ruteo intra-dominio y el
 ruteo entre AS se conoce como ruteo inter-dominios. El ruteo inter-dominio
 usado en internet es el Border Gateway Protocol ~\cite{BGP} (BGP). Aunque su
 simplicidad y elasticidad le han permitido tener el rol principal en la
-Internet global, históricamente ha tenido muy pocas garantías de seguridad.
+Internet global, hist\'oricamente ha tenido muy pocas garant\'ias de seguridad.
 	
-Debido al aspecto inter-dominio de BGP, incluso pequeñas fallas dentro
+Debido al aspecto inter-dominio de BGP, incluso peque\~nas fallas dentro
 de un AS, puede, en ocasiones propagarse ampliamente al resto de
-Internet, causando daño masivo. Una de estas fallas, ocurrió en abril
-de 1997, cuando un router mal configurado de un pequeño proveedor de
-acceso a internet (Internet Service Provider, ISP) insertó información
-errónea en Internet global, diciendo que tenía una ruta óptima a todos
-los destinos~\cite{BGP-eye}. Como no hay una forma de validar los anuncios de ruta, la
-mayor parte del tráfico de Internet fue redirigida a esta ISP, lo que
-dañó fuertemente Internet por casi dos horas. La pérdida de
+Internet, causando da\~no masivo. Una de estas fallas, ocurri\'o en abril
+de 1997, cuando un router mal configurado de un peque\~no proveedor de
+acceso a internet (Internet Service Provider, ISP) insert\'o informaci\'on
+err\'onea en Internet global, diciendo que ten\'ia una ruta \'optima a todos
+los destinos~\cite{BGP-eye}. Como no hay una forma de validar los anuncios de 
+ruta, la mayor parte del tr\'afico de Internet fue redirigida a esta ISP, lo que
+da\~n\'o fuertemente Internet por casi dos horas. La p\'erdida de
 accesibilidad en Internet, puede deberse a errores humanos (por
-ejemplo: mala configuración de un router) o actividades maliciosas.
+ejemplo: mala configuraci\'on de un router) o actividades maliciosas.
+
+Otro problema m\'as reciente fue el llamado Hijack de
+Youtube~\cite{pakistan-youtube}. El 24 de febrero de 2008, Pakist\'an Telecom 
+comenz\'o a avisar que cierta parte de la red de Youtube le pertenec\'ia, . 
+Esto ocasion\'o que cerca de dos tercios de los usurios de Internet que 
+quer\'ian acceder a esa parte de la red, fueran redirigidos hacia Pakist\'an
+Telecom, dej\'andolos sin poder disfrutar de sus videos. Este ``ataque''
+lo hizo intencionalmente, ya que el gobierno hab\'ia ordenado bloquear el 
+acceso a Youtube. Gracias a la r\'apida reacci\'on del equipo de Youtube, y a 
+la cooperaci\'on de otros proveedores,  el problema dur\'o s\'olo un par de 
+horas.
 		
-BGP ha sido el protocolo de ruteo en Internet por 10 años, durante
+BGP ha sido el protocolo de ruteo en Internet por 10 a\~nos, durante
 los cuales numerosos problemas han sido descubiertos. Los
 administradores de la red pueden proteger sus redes de la mayor
-parte de estos problemas usando autentificación, y otras buenas
-prácticas. Sin embargo no es posible verificar fácilmente el
-contenido de un mensaje BGP (la verificación completa toma
+parte de estos problemas usando autentificaci\'on, y otras buenas
+pr\'acticas. Sin embargo no es posible verificar f\'acilmente el
+contenido de un mensaje BGP (la verificaci\'on completa toma
 demasiado tiempo)~\cite{BGP-path-stability}
-, por defecto un router cree la información que
-recibe. Para enfrentar esta situación, se creó Pretty Good
-BGP~\cite{PGBGP1,PGBGP2} (PGBGP) un sistema que no confía 
-automáticamente en las rutas, sino que trata de dar tiempo para 
+, por defecto un router cree la informaci\'on que
+recibe. Para enfrentar esta situaci\'on, se cre\'o Pretty Good
+BGP~\cite{PGBGP1,PGBGP2} (PGBGP) un sistema que no conf\'ia 
+autom\'aticamente en las rutas, sino que trata de dar tiempo para 
 saber si son reales antes de anunciarlas y usarlas.
 			
-El protocolo de comunicación usado actualmente es Internet
-Protocol (IP), ya sea en su cuarta o sexta versión (IPv4 e
-IPv6). Cada computador debe tener un número IP único que lo
-identifique dentro de Internet. Los números IP son vendidos a
-los ISP (por ejemplo: VTR, GTD, Telefónica) para que éstos
-puedan administrarlos dentro de su red interna. Es así como se
+El protocolo de comunicaci\'on usado actualmente es Internet
+Protocol (IP), ya sea en su cuarta o sexta versi\'on (IPv4 e
+IPv6). Cada computador debe tener un n\'umero IP \'unico que lo
+identifique dentro de Internet. Los n\'umeros IP son vendidos a
+los ISP (por ejemplo: VTR, GTD, Telef\'onica) para que \'estos
+puedan administrarlos dentro de su red interna. Es as\'i como se
 puede saber cual es el rango de IP que se encuentra en Chile;
-para de esta forma hacer el estudio centrado específicamente en
-nuestro país.
+para de esta forma hacer el estudio centrado espec\'ificamente en
+nuestro pa\'is.
 				
-Esta memoria, pretende por un lado obtener información
+Esta memoria, pretende por un lado obtener informaci\'on
 acerca de la conectividad actual de Internet en Chile, a
 nivel de IP y de AS y por otro lado probar una estrategia
 para mejorar la seguridad de BGP, es decir PGBGP.
 
 %\newpage
 \section{Motivaci\'on}
-Internet es el fenómeno tecnológico, económico y social más importante de
-nuestros tiempos. Es un medio de comunicación, acceso y distribución de la
-información que no tiene  comparación con ningún otro medio inventado por el
+Internet es el fen\'omeno tecnol\'ogico, econ\'omico y social m\'as importante de
+nuestros tiempos. Es un medio de comunicaci\'on, acceso y distribuci\'on de la
+informaci\'on que no tiene  comparaci\'on con ning\'un otro medio inventado por el
 hombre.
 
 En Chile se sabe poco sobre la calidad de nuestra Internet, ¿Es visible mi
 sitio desde Europa? Actualmente se puede responder a esta pregunta pues
 existen servidores que informan si cierta IP es visible (looking glasses),
-sin embargo hasta ahora estos servicios sólo consideran una IP y un momento
+sin embargo hasta ahora estos servicios s\'olo consideran una IP y un momento
 dado, y no el rango completo de las IPs chilenas, ni su variabilidad en el
-tiempo, que es lo que se intentará lograr en esta memoria.
+tiempo, que es lo que se intentar\'a lograr en esta memoria.
 
-Es interesante entonces saber qué porcentaje de todas las IPs de Chile
+Es interesante entonces saber qu\'e porcentaje de todas las IPs de Chile
 son visibles desde el mundo, como una medida de la visibilidad de
 nuestra red; es decir hacer el estudio para un todas las IPs de Chile
-(i.e. los AS), con la finalidad de tener datos agregados a nivel país,
-que permitirían conocer la realidad chilena, respecto a otros países,
-en esta temática.
+(i.e. los AS), con la finalidad de tener datos agregados a nivel pa\'is,
+que permitir\'ian conocer la realidad chilena, respecto a otros pa\'ises,
+en esta tem\'atica.
 
-En esta misma línea, es relevante saber si el problema de la
-visibilidad es, por ejemplo, responsabilidad de algún ISP en
+En esta misma l\'inea, es relevante saber si el problema de la
+visibilidad es, por ejemplo, responsabilidad de alg\'un ISP en
 particular, es decir tratar de aislar lo mejor posible el problema
-para notificar a los involucrados (de forma automática) de modo que
+para notificar a los involucrados (de forma autom\'atica) de modo que
 el problema pueda ser estudiado y en lo posible solucionado por los
-responsables específicos.
+responsables espec\'ificos.
 
-Es fundamental el saber qué tanto se puede mejorar la seguridad
+Es fundamental el saber qu\'e tanto se puede mejorar la seguridad
 de la red en Chile, pues muchas de las actividades realizadas
-en el país dependen de Internet, por lo tanto es crítico que
-ésta tenga algún nivel de seguridad.
+en el pa\'is dependen de Internet, por lo tanto es cr\'itico que
+\'esta tenga alg\'un nivel de seguridad.
 
-CAIDA (Cooperative Association for Internet Data Analysis),
-es una asociación que provee herramientas y análisis
+Cooperative Association for Internet Data Analysis (CAIDA),
+es una asociaci\'on que provee herramientas y an\'alisis
 promoviendo el mantenimiento de una infraestructura de
-Internet escalable y robusta. Dentro de esos análisis ha
-hecho estudios en esta misma área ~\cite{CAIDA2}, para la zona
-Asia-Pacífico, pero en este estudio, no se incluyó Chile,
+Internet escalable y robusta. Dentro de esos an\'alisis ha
+hecho estudios en el \'area de la visibilidad ~\cite{CAIDA2}, para la zona
+Asia-Pac\'ifico, pero en este estudio, no se incluy\'o Chile,
 por lo tanto es algo beneficioso poder ver nuestra realidad
 local.
 
 La memoria pretende investigar la visibilidad y el
-crecimiento de Internet en Chile, qué IPs son compradas
-en Chile y cuáles son efectivamente visibles. De este
-modo se pretende obtener no solo una fotografía de
-internet, sino que además poder ir componiendo estas
-fotografías en el tiempo para ver su evolución.
-Académicamente es muy interesante saber esto, pues
-actualmente sólo se han realizado fotos, y para saber
-cómo es Internet hoy en Chile, habría que rehacer el
+crecimiento de Internet en Chile, qu\'e IPs son compradas
+en Chile y cu\'ales son efectivamente visibles. De este
+modo se pretende obtener no solo una fotograf\'ia de
+internet, sino que adem\'as poder ir componiendo estas
+fotograf\'ias en el tiempo para ver su evoluci\'on.
+Acad\'emicamente es muy interesante saber esto, pues
+actualmente s\'olo se han realizado fotos, y para saber
+c\'omo es Internet hoy en Chile, habr\'ia que rehacer el
 estudio. Estos datos pueden ser usados para ver como
 migra Chile realmente hacia IPv6, un paso que debe
-tomarse ( y efectivamente está siendo tomado).
+tomarse ( y efectivamente est\'a siendo tomado).
 
 \section{Objetivo General}
 El objetivo general es medir la visibilidad de Internet en Chile en el tiempo,
-así como su crecimiento y seguridad ante eventuales amenazas.
+as\'i como su crecimiento y seguridad ante eventuales amenazas.
 \section{Ojetivos Espec\'ificos}
 \begin{itemize}
- \item Medir la visibilidad de las IPs y AS chilenas en los ``looking glasses''.
- \item Hacer esta  medición constante, y publicar la información para el público.
+ \item Medir la visibilidad de las IPs y AS chilenas en los ``looking 
+ glasses''.
+ \item Hacer esta  medici\'on constante, y publicar la informaci\'on para el 
+ p\'ublico.
  \item Medir crecimiento de Internet en Chile (IPs compradas y
  visibles)
  \item Detectar problemas y puntos de falla.
  \item Estudio y prueba de PGBGP. Recomendar (o no) su uso, considerando en
  esto, tanto de su utilidad al evitar falsas rutas, como la sobrecarga de 
- procesamiento que generaría en el router.
+ procesamiento que generar\'ia en el router.
 \end{itemize}
 \section{Metodolog\'ia}
 \begin{enumerate}
- \item Se revisarán protocolos para conectarse a los ``looking glasses''
+ \item Se revisar\'an protocolos para conectarse a los ``looking glasses''
  existentes, de manera de crear un cliente que pruebe con las IPs
- pertenecientes a Chile, así como con los AS chilenos.
- \item Estudiar las tablas de ruteo hacia las IPs chilenas.
- \item Se obtendrán datos con el objetivo de generar información, es decir,
- porcentaje de visibilidad, un mapa de visibilidad.
- \item Se pretende usar esta herramienta para buscar los problemas que hay
- actualmente (si un ISP rutea mal por ejemplo)
- \item Se estudiará BGP y PGBGP se realizará una implementación de este
- último.
- \item Se probará experimentalmente la utilidad de este sistema
+ pertenecientes a Chile, as\'i como con los AS chilenos.
+ \item En una primera etapa, se busca que se pueda probar con alguna IP, y
+ se obtenga el porcentaje de \'exito con respecto a al menos 50 ``looking
+ glasses''
+ \item Dentro de esta etapa se mostrar\'a tambie\'en los puntos de falla.
+ \item En una segunda etapa se espera poder realizar autom\'aticamente la 
+ prueba para todas las IPs de Chile.
+ \item Se obtendr\'an datos con el objetivo de generar informaci\'on, es decir,
+ porcentaje de visibilidad, un mapa de visibilidad que contenga: punto de
+ vista, lugar  observado.
+ \item Se pretende usar esta herramienta para buscar los problemas que existan
+ actualmente (si un ISP rutea mal por ejemplo).
+ \item Se estudiar\'a BGP y PGBGP se realizar\'a una implementaci\'on de este
+ \'ultimo.
+ \item Se probar\'a experimentalmente la utilidad de este sistema.
 \end{enumerate}
 
 
+\chapter{Trabajo Relacionado}
+Con respecto a la seguridad de BGP, se han tomado dos enfoques:
+\begin{enumerate}
+\item Protecci\'on criptogr\'afica
+\item Detecci\'on de anomal\'ias
+\end{enumerate}
+Protecci\'on criptogr\'afica se relaciona con un registro autentificado que
+relacione prefijos IP con sus respectivos ASes de origen. El registr\'o
+deber\'a ser firmado y distribuido usando criptograf\'ia de clave asim\'etrica,
+o de clave p\'ublica (PKI por su sigla en ingl\'es).
 
+Secure BGP (SBGP)~\cite{sbgp} fue el primer intento, en que cada ruta anunciada
+es firmada por el AS de origen para asegurar que el ruteador representa el ASN
+que dice tener, y que el prefijo pertenece al ASN. Los ASes que propagan la
+ruta, deben firmar tambi\'en, para verificar que el camino es el que realmente
+recorri\'o la actualizaci\'on.
+
+Secure Origin BGP (soBGP) ~\cite{sobgp} toma un enfoque m\'as descentralizado.
+Usa un PKI distribuido que contiene la propiedad de los prefijos y objetos de
+pol\'iticas. Los objetos de pol\'iticas son usados para declarar que dos ASes
+son vecinos, y los prefijos que deber\'ian ser propagados en ese v\'ertice.
+SoBGP verifica una actualizaci\'on, primero asegur\'andose que el AS de origen
+del camino es correcto usando una b\'usqueda PKI, y luego verifica que el
+camino de AS es posible dada la secuencia de aristas para el prefijo y los
+objetos de pol\'iticas.
+
+Pretty Secure BGP (psBGP) ~\cite{psbgp} emplea un PKI centralizado, para
+distribuir certificados de n\'umeros AS, y una red de confianza PKI para
+designar due\~nos de prefijos.
+
+Desafortunadamente, no es claro como pueden manejar caminos que no pueden ser
+completamente evrificados debido a que no todos los ASes han adoptado su
+soluci\'on.
+%% PGBGP
+%%CODIGO:
+%http://www.cs.unm.edu/~treport/tr/07-08/pgbgp-adversary.pdf
+%%
+%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Conceptos Básicos}
+%\chapter{Conceptos B\'asicos}
 %\texttt{\textbackslash numprint\{20009\}}: \numprint{20009}\\
 
 %Opciones de clase:
@@ -265,7 +321,7 @@ así como su crecimiento y seguridad ante eventuales amenazas.
 %\item \textbf{\textbackslash bibliographyname} define el nombre de la bibliografia por defecto a referencias, se puede cambiar con \textbackslash renewcommand\{\textbackslash  bibliographyname\}\{text\}
 %\end{itemize}
 
-%Recomendación, generar siempre las imagenes en pdf. El logo a color esta generado en base al logo vectorial hecho por mechon barsa y B1mbo, sacado de http://es.wikipedia.org/wiki/Archivo:Uchile.svg, aunque le tuve que sacar la capa del brillo, porque me generaba mal el pdf. Ahora me faltaria generar el pdf del logo en blanco y negro.
+%Recomendaci\'on, generar siempre las imagenes en pdf. El logo a color esta generado en base al logo vectorial hecho por mechon barsa y B1mbo, sacado de http://es.wikipedia.org/wiki/Archivo:Uchile.svg, aunque le tuve que sacar la capa del brillo, porque me generaba mal el pdf. Ahora me faltaria generar el pdf del logo en blanco y negro.
 
 %Las imagenes las pueden ubicar en la carpeta img para mas orden, y no es necesario ponerle la ruta
 %por ejemplo el archivo a.pdf esta en img/, y el archivo b.pdf esta en img/algo, y para insertarlo solo pongo
@@ -275,11 +331,11 @@ así como su crecimiento y seguridad ante eventuales amenazas.
 %\includegraphics[height=2cm]{algo/b}
 %\includegraphics[height=2cm]{a.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Evaluación Experimental}
-%Este template ha sido utilizado tanto en las memorias de Fernando Krell Loy y Sebastian Kreft Carreño. También estudiantes de Ingenieria Civil Industrial y Eléctrica han usado versiones antiguas de este template.
+%\chapter{Evaluaci\'on Experimental}
+%Este template ha sido utilizado tanto en las memorias de Fernando Krell Loy y Sebastian Kreft Carreño. Tambi\'en estudiantes de Ingenieria Civil Industrial y El\'ectrica han usado versiones antiguas de este template.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\chapter{Conclusiones}
-%Se obtuvo un template que permite escribir rápidamente una memoria en \LaTeX  sin las complicaciones de tener que hacer la portada ni de crear la estructura.
+%Se obtuvo un template que permite escribir r\'apidamente una memoria en \LaTeX  sin las complicaciones de tener que hacer la portada ni de crear la estructura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{abbrv}
 \bibliography{biblio}{}
@@ -291,10 +347,10 @@ así como su crecimiento y seguridad ante eventuales amenazas.
 %\end{additional}
 
 %\begin{appendix}
-%\section{Código 1}
-%Aquí debiese ir el código
+%\section{C\'odigo 1}
+%Aqu\'i debiese ir el c\'odigo
 %\newpage
-%\section{Artículo publicado}
-%Y acá algun articulo
+%\section{Art\'iculo publicado}
+%Y ac\'a algun articulo
 %\end{appendix}
 \end{document}
