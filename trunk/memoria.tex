@@ -224,8 +224,8 @@ El objetivo general es medir la visibilidad de Internet en Chile en el tiempo,
 as\'i como su crecimiento y seguridad ante eventuales amenazas.
 \section{Ojetivos Espec\'ificos}
 \begin{itemize}
- \item Crear una herramienta que permita medir la visibilidad de las IPs y 
- AS chilenas en los ``looking glasses''.
+ \item Crear (o adaptar) una herramienta que permita medir la visibilidad de
+ las IPs y  ASes chilenas en los ``looking glasses''.
  \item Realizar esta  medici\'on de forma constante, y publicar la 
  informaci\'on para el p\'ublico.
  \item Medir crecimiento de Internet en Chile (IPs compradas y  visibles)
@@ -237,7 +237,7 @@ as\'i como su crecimiento y seguridad ante eventuales amenazas.
 \section{Metodolog\'ia}
 \begin{enumerate}
  \item Se revisar\'an protocolos para conectarse a los ``looking glasses''
- existentes, de manera de crear un cliente que pruebe con las IPs
+ existentes, de manera de crear (o adaptar) un cliente que pruebe con las IPs
  pertenecientes a Chile, as\'i como con los AS chilenos.
  \item En una primera etapa, se busca que se pueda probar con alguna IP, y
  se obtenga el porcentaje de \'exito con respecto a al menos 50 ``looking
@@ -261,8 +261,22 @@ El primer estudio completo de la sanidad de internet fue hecho en 1997
 ~\cite{instability}. All\'i se observ\'o por nueve meses el tr\'afico a
 trav\'es de 5 puntos de intercambio, sus principales descubrimientos fueron la
 gran cantidad de actualizaciones que se realizaban, la mayor parte patol\'ogica
-o redundante. Diez a\~nos despu\'es, un estudio similar
-~\cite{routing-revisited} 
+o redundante. Casi diez a\~nos despu\'es, un estudio similar, 
+~\cite{routing-revisited} con datos desde agosto 2005 a enero 2006, mostrando 
+una clara mejora en la salud de BGP, los mensajes patol\'ogicos disminuyeron 
+notablemente su presencia, quedando entre estos, mayoritariamente los anuncios 
+redundantes.
+
+Existen iniciativas p\'ublicas para almacenar la informaci\'on de ruteo, entre
+ellas est\'an los archivos mantenidos por el Proyecto Vista de Rutas de la
+Universidad de Oregon (University of Oregon's Route Views Project)
+~\cite{uorvp}, los archivos RIPE ~\cite{ripe} y el Monitor BGP del MIT
+~\cite{bgp-monitor}, estos archivos almacenan la informaci\'on tal como se
+origin\'o, es decir los mensajes de actualizaci\'on, por lo que no es sencillo
+obtener informaci\'on o estad\'isticas de ellos. BGP-Inspect 
+~\cite{bgp-inspect} es una herramienta que obtiene y preprocesa informaci\'on 
+de estos archivos, proporcionando una interfaz de consulta m\'as simple desde
+la cual se puede obtener informaci\'on agregada.
 
 Con respecto a la seguridad de BGP, se han tomado dos enfoques:
 \begin{enumerate}
