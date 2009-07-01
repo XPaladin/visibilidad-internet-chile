@@ -118,27 +118,28 @@ ruteo entre distintos ASes se conoce como ruteo inter-dominios. El ruteo
 inter-dominio usado en internet es el Border Gateway Protocol ~\cite{BGP}
 (BGP). Aunque su simplicidad y elasticidad le han permitido tener el rol 
 principal en la Internet global, hist\'oricamente ha tenido muy pocas 
-garant\'ias de seguridad.
+garant\'ias de seguridad, pues su dise\~no original no lo consider\'o 
+~\cite{bgp-eye}.
 	
-Debido al aspecto inter-dominio de BGP, incluso peque\~nas fallas dentro
-de un AS pueden, en ocasiones, propagarse ampliamente al resto de
-Internet, causando da\~no masivo. Una de estas fallas, ocurri\'o en abril
-de 1997, cuando un router mal configurado de un peque\~no proveedor de
+Debido a falta de seguridad y al aspecto inter-dominio de BGP, incluso 
+peque\~nas fallas dentro de un AS pueden, en ocasiones, propagarse ampliamente 
+al resto de Internet, causando da\~no masivo. Una de estas fallas, ocurri\'o en
+abril de 1997, cuando un router mal configurado de un peque\~no proveedor de
 acceso a internet (Internet Service Provider, ISP) insert\'o informaci\'on
 err\'onea en Internet global, diciendo que ten\'ia una ruta \'optima a todos
-los destinos ~\cite{BGP-eye}. Como no hay una forma de validar los anuncios de 
+los destinos ~\cite{bgp-eye}. Como no hay una forma de validar los anuncios de 
 ruta, la mayor parte del tr\'afico de Internet fue redirigida a esta ISP, lo que
 da\~n\'o fuertemente Internet por casi dos horas. La p\'erdida de
-accesibilidad en Internet, puede deberse a errores humanos (por
-ejemplo: mala configuraci\'on de un router) o actividades maliciosas.
+accesibilidad en Internet, puede deberse a errores humanos, por
+ejemplo: mala configuraci\'on de un router, o actividades maliciosas.
 
 Otro problema m\'as reciente fue el llamado Hijack de
 Youtube~\cite{pakistan-youtube}. El 24 de febrero de 2008, Pakist\'an Telecom 
-comenz\'o a avisar que cierta parte de la red de Youtube le pertenec\'ia, . 
+comenz\'o a avisar que cierta parte de la red de Youtube le pertenec\'ia. 
 Esto ocasion\'o que cerca de dos tercios de los usurios de Internet que 
 quer\'ian acceder a esa parte de la red, fueran redirigidos hacia Pakist\'an
 Telecom, dej\'andolos sin poder disfrutar de sus videos. Este ``ataque''
-lo hizo intencionalmente, ya que el gobierno hab\'ia ordenado bloquear el 
+fue hecho intencionalmente, ya que el gobierno hab\'ia ordenado bloquear el 
 acceso a Youtube. Gracias a la r\'apida reacci\'on del equipo de Youtube, y a 
 la cooperaci\'on de otros proveedores,  el problema dur\'o s\'olo un par de 
 horas.
@@ -155,7 +156,7 @@ autom\'aticamente en las rutas, sino que trata de dar tiempo para saber si son
 reales antes de anunciarlas c\'omo ruta \'optima.
 			
 Todos estos problemas de Internet, ocasionan demoras en el tr\'afico e incluso
-p\'erdida de alcance de algunos destinos, en este trabajo se estudiar\'a hasta 
+p\'erdida de alcance de algunos destinos. En este trabajo se estudiar\'a hasta 
 qu\'e punto es efectivamente alcanzable (o visible) la red chilena desde el 
 mundo.
 
@@ -164,8 +165,10 @@ sea en su cuarta o sexta versi\'on (IPv4 e IPv6). Cada computador debe tener un
 n\'umero IP \'unico que lo identifique dentro de Internet. Los n\'umeros IP son
 vendidos a organizaciones y a los ISP (por ejemplo: VTR, GTD, Telef\'onica) 
 para que \'estos puedan administrarlos dentro de su red interna. Es as\'i como 
-se puede saber cual es el rango de IP que se encuentra en Chile; para de esta 
-forma hacer el estudio centrado espec\'ificamente en nuestro pa\'is.
+se puede obtener una aproximaci\'on sobre cual es el rango de IP que se 
+encuentra en Chile; para de esta forma hacer el estudio centrado 
+espec\'ificamente en nuestro pa\'is. Determinar la localizaci\'on geogr\'afica
+a partir de la IP no es trivial para el caso general, ver ~\cite{caida-asia}.
 				
 Esta memoria, pretende por un lado obtener informaci\'on acerca de la 
 conectividad actual de Internet en Chile, a nivel de IP y de AS y por otro lado
@@ -179,7 +182,7 @@ la informaci\'on que no tiene  comparaci\'on con ning\'un otro medio inventado
 por el hombre.
 
 En Chile se sabe poco sobre la calidad de nuestra Internet, ¿Es visible mi
-sitio desde Europa? Actualmente se puede responder a esta pregunta pues
+sitio desde Europa?, actualmente se puede responder a esta pregunta, pues
 existen servidores que informan si cierta IP es visible (looking glasses),
 sin embargo hasta ahora estos servicios s\'olo consideran una IP y un momento
 dado, y no el rango completo de las IPs chilenas, ni su variabilidad en el
@@ -202,11 +205,13 @@ Chile, pues muchas de las actividades realizadas en el pa\'is dependen de
 Internet, por lo tanto es cr\'itico que \'esta tenga alg\'un nivel de
 estabilidad, o seguridad.
 
-Cooperative Association for Internet Data Analysis (CAIDA), es una asociaci\'on que provee herramientas y an\'alisis promoviendo el mantenimiento de una 
+Cooperative Association for Internet Data Analysis (CAIDA), es una asociaci\'on
+que provee herramientas y an\'alisis, promoviendo el mantenimiento de una 
 infraestructura de Internet escalable y robusta. Dentro de esos an\'alisis ha
-hecho estudios en el \'area de la visibilidad ~\cite{CAIDA2}, para la zona
-Asia-Pac\'ifico, pero en este estudio, no se incluy\'o Chile, por lo tanto es 
-algo beneficioso poder ver nuestra realidad local.
+hecho estudios en el \'area de la visibilidad ~\cite{caida-asia}, para la zona
+Asia-Pac\'ifico, en este estudio, no se incluy\'o Chile, pero s\'olo con 28
+destinos en el pa\'is, por lo tanto es beneficioso centrar un estudio similar
+espec\'ificamente en este pa\'is.
 
 La memoria pretende investigar la visibilidad y el crecimiento de Internet en 
 Chile, qu\'e IPs son compradas en Chile y cu\'ales son efectivamente visibles. 
@@ -273,10 +278,23 @@ Universidad de Oregon (University of Oregon's Route Views Project)
 ~\cite{uorvp}, los archivos RIPE ~\cite{ripe} y el Monitor BGP del MIT
 ~\cite{bgp-monitor}, estos archivos almacenan la informaci\'on tal como se
 origin\'o, es decir los mensajes de actualizaci\'on, por lo que no es sencillo
-obtener informaci\'on o estad\'isticas de ellos. BGP-Inspect 
-~\cite{bgp-inspect} es una herramienta que obtiene y preprocesa informaci\'on 
-de estos archivos, proporcionando una interfaz de consulta m\'as simple desde
-la cual se puede obtener informaci\'on agregada.
+obtener informaci\'on o estad\'isticas de ellos. BGP-Play ~\cite{bgp-play} es
+una herramienta que permite visualizar el grafo de ASes al igual que LinkRank
+~\cite{link-rank}, por otro lado, BGP-Inspect ~\cite{bgp-inspect} es una 
+herramienta que obtiene y preprocesa informaci\'on de estos archivos, 
+proporcionando una interfaz de consulta web m\'as simple desde la cual se puede
+obtener informaci\'on agregada.
+
+Adem\'as de estos sitios, existen actualmente servidores ``looking glasses,''
+que permiten obtener informaci\'on de ruteo, desde ese punto hasta cualquier
+otro punto~\cite{looking-glasses}, ingresando la IP del destino.
+
+Otra iniciativa, es la de CAIDA, que sit\'ua servidores en distintas partes del
+mundo para tener mediciones desde distintos puntos de vista. Esta
+organizaci\'on realiz\'o un estudio para la zona de Asia y el Pac\'ifico,
+incluyendo 28 destinos dentro de Chile, un estudio similar es el que se
+pretende realizar en esta memoria, pero centrado exclusivamente en Chile como
+destino, y con la mayor cantidad de lugares de origen posible.
 
 Con respecto a la seguridad de BGP, se han tomado dos enfoques:
 \begin{enumerate}
