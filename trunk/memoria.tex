@@ -109,22 +109,24 @@ pdfcreator={}]{hyperref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introducci\'on}
 Internet, llamada la red de redes, es una red global descentralizada, compuesta
-de muchas redes m\'as peque\~nas interconectadas. Una red que est\'e bajo el control
-de una sola organizaci\'on, se llama Sistema Aut\'onomo (Autonomous System, AS).
+de muchas redes m\'as peque\~nas interconectadas. Una red que est\'e bajo el 
+control de una sola organizaci\'on, se llama Sistema Aut\'onomo (Autonomous 
+System, AS). Internet est\'a formado por la uni\'on de estos ASes.
 
 El proceso de ruteo dentro de un AS es llamado ruteo intra-dominio y el
-ruteo entre AS se conoce como ruteo inter-dominios. El ruteo inter-dominio
-usado en internet es el Border Gateway Protocol ~\cite{BGP} (BGP). Aunque su
-simplicidad y elasticidad le han permitido tener el rol principal en la
-Internet global, hist\'oricamente ha tenido muy pocas garant\'ias de seguridad.
+ruteo entre distintos ASes se conoce como ruteo inter-dominios. El ruteo 
+inter-dominio usado en internet es el Border Gateway Protocol ~\cite{BGP}
+(BGP). Aunque su simplicidad y elasticidad le han permitido tener el rol 
+principal en la Internet global, hist\'oricamente ha tenido muy pocas 
+garant\'ias de seguridad.
 	
 Debido al aspecto inter-dominio de BGP, incluso peque\~nas fallas dentro
-de un AS, puede, en ocasiones propagarse ampliamente al resto de
+de un AS pueden, en ocasiones, propagarse ampliamente al resto de
 Internet, causando da\~no masivo. Una de estas fallas, ocurri\'o en abril
 de 1997, cuando un router mal configurado de un peque\~no proveedor de
 acceso a internet (Internet Service Provider, ISP) insert\'o informaci\'on
 err\'onea en Internet global, diciendo que ten\'ia una ruta \'optima a todos
-los destinos~\cite{BGP-eye}. Como no hay una forma de validar los anuncios de 
+los destinos ~\cite{BGP-eye}. Como no hay una forma de validar los anuncios de 
 ruta, la mayor parte del tr\'afico de Internet fue redirigida a esta ISP, lo que
 da\~n\'o fuertemente Internet por casi dos horas. La p\'erdida de
 accesibilidad en Internet, puede deberse a errores humanos (por
@@ -141,40 +143,40 @@ acceso a Youtube. Gracias a la r\'apida reacci\'on del equipo de Youtube, y a
 la cooperaci\'on de otros proveedores,  el problema dur\'o s\'olo un par de 
 horas.
 		
-BGP ha sido el protocolo de ruteo en Internet por 10 a\~nos, durante
-los cuales numerosos problemas han sido descubiertos. Los
-administradores de la red pueden proteger sus redes de la mayor
-parte de estos problemas usando autentificaci\'on, y otras buenas
-pr\'acticas. Sin embargo no es posible verificar f\'acilmente el
-contenido de un mensaje BGP (la verificaci\'on completa toma
-demasiado tiempo)~\cite{BGP-path-stability}
-, por defecto un router cree la informaci\'on que
-recibe. Para enfrentar esta situaci\'on, se cre\'o Pretty Good
-BGP~\cite{PGBGP1,PGBGP2} (PGBGP) un sistema que no conf\'ia 
-autom\'aticamente en las rutas, sino que trata de dar tiempo para 
-saber si son reales antes de anunciarlas y usarlas.
+BGP ha sido el protocolo de ruteo en Internet por m\'as de 10 a\~nos, durante
+los cuales numerosos problemas han sido descubiertos. Los administradores de
+cada red pueden proteger sus redes de la mayor parte de estos problemas usando 
+autentificaci\'on, y otras buenas pr\'acticas. Sin embargo no es posible 
+verificar f\'acilmente el contenido de un mensaje BGP (la verificaci\'on 
+completa toma demasiado tiempo)~\cite{BGP-path-stability}, por defecto un 
+router cree la informaci\'on que recibe. Para enfrentar esta situaci\'on, se 
+cre\'o Pretty Good BGP~\cite{PGBGP1,PGBGP2} (PGBGP) un sistema que no conf\'ia 
+autom\'aticamente en las rutas, sino que trata de dar tiempo para saber si son 
+reales antes de anunciarlas c\'omo ruta \'optima.
 			
-El protocolo de comunicaci\'on usado actualmente es Internet
-Protocol (IP), ya sea en su cuarta o sexta versi\'on (IPv4 e
-IPv6). Cada computador debe tener un n\'umero IP \'unico que lo
-identifique dentro de Internet. Los n\'umeros IP son vendidos a
-los ISP (por ejemplo: VTR, GTD, Telef\'onica) para que \'estos
-puedan administrarlos dentro de su red interna. Es as\'i como se
-puede saber cual es el rango de IP que se encuentra en Chile;
-para de esta forma hacer el estudio centrado espec\'ificamente en
-nuestro pa\'is.
-				
-Esta memoria, pretende por un lado obtener informaci\'on
-acerca de la conectividad actual de Internet en Chile, a
-nivel de IP y de AS y por otro lado probar una estrategia
-para mejorar la seguridad de BGP, es decir PGBGP.
+Todos estos problemas de Internet, ocasionan demoras en el tr\'afico e incluso
+p\'erdida de alcance de algunos destinos, en este trabajo se estudiar\'a hasta 
+qu\'e punto es efectivamente alcanzable (o visible) la red chilena desde el 
+mundo.
 
+El protocolo de comunicaci\'on usado actualmente es Internet Protocol (IP), ya 
+sea en su cuarta o sexta versi\'on (IPv4 e IPv6). Cada computador debe tener un
+n\'umero IP \'unico que lo identifique dentro de Internet. Los n\'umeros IP son
+vendidos a organizaciones y a los ISP (por ejemplo: VTR, GTD, Telef\'onica) 
+para que \'estos puedan administrarlos dentro de su red interna. Es as\'i como 
+se puede saber cual es el rango de IP que se encuentra en Chile; para de esta 
+forma hacer el estudio centrado espec\'ificamente en nuestro pa\'is.
+				
+Esta memoria, pretende por un lado obtener informaci\'on acerca de la 
+conectividad actual de Internet en Chile, a nivel de IP y de AS y por otro lado
+probar una estrategia para mejorar la seguridad de BGP, en particular PGBGP.
+%
 %\newpage
 \section{Motivaci\'on}
-Internet es el fen\'omeno tecnol\'ogico, econ\'omico y social m\'as importante de
-nuestros tiempos. Es un medio de comunicaci\'on, acceso y distribuci\'on de la
-informaci\'on que no tiene  comparaci\'on con ning\'un otro medio inventado por el
-hombre.
+Internet es el fen\'omeno tecnol\'ogico, econ\'omico y social m\'as importante 
+de nuestros tiempos. Es un medio de comunicaci\'on, acceso y distribuci\'on de 
+la informaci\'on que no tiene  comparaci\'on con ning\'un otro medio inventado 
+por el hombre.
 
 En Chile se sabe poco sobre la calidad de nuestra Internet, ¿Es visible mi
 sitio desde Europa? Actualmente se puede responder a esta pregunta pues
@@ -183,62 +185,54 @@ sin embargo hasta ahora estos servicios s\'olo consideran una IP y un momento
 dado, y no el rango completo de las IPs chilenas, ni su variabilidad en el
 tiempo, que es lo que se intentar\'a lograr en esta memoria.
 
-Es interesante entonces saber qu\'e porcentaje de todas las IPs de Chile
-son visibles desde el mundo, como una medida de la visibilidad de
-nuestra red; es decir hacer el estudio para un todas las IPs de Chile
-(i.e. los AS), con la finalidad de tener datos agregados a nivel pa\'is,
-que permitir\'ian conocer la realidad chilena, respecto a otros pa\'ises,
-en esta tem\'atica.
+Es interesante entonces saber qu\'e porcentaje de todas las IPs de Chile son 
+visibles desde el mundo, como una medida de la visibilidad de nuestra red; es 
+decir hacer el estudio para un todas las IPs de Chile (i.e. los AS), con la 
+finalidad de tener datos agregados a nivel pa\'is, que permitir\'ian conocer la
+realidad chilena, respecto a otros pa\'ises, en esta tem\'atica.
 
-En esta misma l\'inea, es relevante saber si el problema de la
-visibilidad es, por ejemplo, responsabilidad de alg\'un ISP en
-particular, es decir tratar de aislar lo mejor posible el problema
-para notificar a los involucrados (de forma autom\'atica) de modo que
-el problema pueda ser estudiado y en lo posible solucionado por los
-responsables espec\'ificos.
+En esta misma l\'inea, es relevante saber si el problema de la visibilidad es, 
+por ejemplo, responsabilidad de alg\'un ISP en particular, es decir tratar de 
+aislar lo mejor posible el problema para notificar a los involucrados (de forma
+autom\'atica) de modo que el problema pueda ser estudiado y en lo posible 
+solucionado por los responsables espec\'ificos.
 
-Es fundamental el saber qu\'e tanto se puede mejorar la seguridad
-de la red en Chile, pues muchas de las actividades realizadas
-en el pa\'is dependen de Internet, por lo tanto es cr\'itico que
-\'esta tenga alg\'un nivel de seguridad.
+Es fundamental el saber qu\'e tanto se puede mejorar la seguridad de la red en 
+Chile, pues muchas de las actividades realizadas en el pa\'is dependen de 
+Internet, por lo tanto es cr\'itico que \'esta tenga alg\'un nivel de
+estabilidad, o seguridad.
 
-Cooperative Association for Internet Data Analysis (CAIDA),
-es una asociaci\'on que provee herramientas y an\'alisis
-promoviendo el mantenimiento de una infraestructura de
-Internet escalable y robusta. Dentro de esos an\'alisis ha
+Cooperative Association for Internet Data Analysis (CAIDA), es una asociaci\'on que provee herramientas y an\'alisis promoviendo el mantenimiento de una 
+infraestructura de Internet escalable y robusta. Dentro de esos an\'alisis ha
 hecho estudios en el \'area de la visibilidad ~\cite{CAIDA2}, para la zona
-Asia-Pac\'ifico, pero en este estudio, no se incluy\'o Chile,
-por lo tanto es algo beneficioso poder ver nuestra realidad
-local.
+Asia-Pac\'ifico, pero en este estudio, no se incluy\'o Chile, por lo tanto es 
+algo beneficioso poder ver nuestra realidad local.
 
-La memoria pretende investigar la visibilidad y el
-crecimiento de Internet en Chile, qu\'e IPs son compradas
-en Chile y cu\'ales son efectivamente visibles. De este
-modo se pretende obtener no solo una fotograf\'ia de
-internet, sino que adem\'as poder ir componiendo estas
-fotograf\'ias en el tiempo para ver su evoluci\'on.
-Acad\'emicamente es muy interesante saber esto, pues
-actualmente s\'olo se han realizado fotos, y para saber
-c\'omo es Internet hoy en Chile, habr\'ia que rehacer el
-estudio. Estos datos pueden ser usados para ver como
-migra Chile realmente hacia IPv6, un paso que debe
-tomarse ( y efectivamente est\'a siendo tomado).
+La memoria pretende investigar la visibilidad y el crecimiento de Internet en 
+Chile, qu\'e IPs son compradas en Chile y cu\'ales son efectivamente visibles. 
+De este modo se pretende obtener no solo una fotograf\'ia de internet, sino que
+adem\'as poder ir componiendo estas fotograf\'ias en el tiempo para ver su 
+evoluci\'on temporal.
+Acad\'emicamente es muy interesante saber esto, pues actualmente s\'olo se han 
+realizado fotos, y para saber c\'omo es Internet hoy en Chile, habr\'ia que 
+rehacer el estudio. Estos datos pueden ser usados para ver como migra Chile 
+realmente hacia IPv6, un paso que debe tomarse ( y efectivamente est\'a siendo 
+tomado).
 
 \section{Objetivo General}
 El objetivo general es medir la visibilidad de Internet en Chile en el tiempo,
 as\'i como su crecimiento y seguridad ante eventuales amenazas.
 \section{Ojetivos Espec\'ificos}
 \begin{itemize}
- \item Medir la visibilidad de las IPs y AS chilenas en los ``looking 
- glasses''.
- \item Hacer esta  medici\'on constante, y publicar la informaci\'on para el 
- p\'ublico.
- \item Medir crecimiento de Internet en Chile (IPs compradas y
- visibles)
- \item Detectar problemas y puntos de falla.
- \item Estudio y prueba de PGBGP. Recomendar (o no) su uso, considerando en
- esto, tanto de su utilidad al evitar falsas rutas, como la sobrecarga de 
- procesamiento que generar\'ia en el router.
+ \item Crear una herramienta que permita medir la visibilidad de las IPs y 
+ AS chilenas en los ``looking glasses''.
+ \item Realizar esta  medici\'on de forma constante, y publicar la 
+ informaci\'on para el p\'ublico.
+ \item Medir crecimiento de Internet en Chile (IPs compradas y  visibles)
+ \item La herramienta debe permitir detectar problemas y puntos de falla.
+ \item Estudiar y probar PGBGP. Recomendar (o no) su uso, considerando en esto,
+ tanto de su utilidad al evitar falsas rutas, como el retraso provocado por su
+ uso.
 \end{itemize}
 \section{Metodolog\'ia}
 \begin{enumerate}
@@ -263,6 +257,13 @@ as\'i como su crecimiento y seguridad ante eventuales amenazas.
 
 
 \chapter{Trabajo Relacionado}
+El primer estudio completo de la sanidad de internet fue hecho en 1997
+~\cite{instability}. All\'i se observ\'o por nueve meses el tr\'afico a
+trav\'es de 5 puntos de intercambio, sus principales descubrimientos fueron la
+gran cantidad de actualizaciones que se realizaban, la mayor parte patol\'ogica
+o redundante. Diez a\~nos despu\'es, un estudio similar
+~\cite{routing-revisited} 
+
 Con respecto a la seguridad de BGP, se han tomado dos enfoques:
 \begin{enumerate}
 \item Protecci\'on criptogr\'afica
@@ -293,7 +294,7 @@ distribuir certificados de n\'umeros AS, y una red de confianza PKI para
 designar due\~nos de prefijos.
 
 Desafortunadamente, no es claro como pueden manejar caminos que no pueden ser
-completamente evrificados debido a que no todos los ASes han adoptado su
+completamente verificados debido a que no todos los ASes han adoptado su
 soluci\'on.
 %% PGBGP
 %%CODIGO:
