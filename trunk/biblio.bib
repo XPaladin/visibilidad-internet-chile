@@ -1,25 +1,25 @@
 @MISC{
-    BGP,
+    bgp,
     AUTHOR    = {Y. Rekhter AND T. Li AND S. Hares},
     TITLE     = {A Border Gateway Protocol 4 (BGP-4)},
 	HOWPUBLISHED = {\url{http://tools.ietf.org/html/rfc4271}},
 }
 @MISC{
-	PGBGP0,
+	pgbgp0,
 	AUTHOR	= {J. Karlin AND S.Forrest AND J.Rexford},
 	TITLE 	= {Protecting BGP from Invalid Paths},
 	HOWPUBLISHED =
 	{\url{http://cs.unm.edu/~treport/tr/07-08/pgbgp-adversary.pdf}},
 }
 @MISC{
-	PGBGP1,
+	pgbgp1,
 	AUTHOR	= {J. Karlin AND S.Forrest AND J.Rexford},
 	TITLE 	= {Autonomous security for autonomous systems},
 	HOWPUBLISHED = {\url{http://cs.unm.edu/~karlinjf/papers/pgbgp_cn.pdf}},
 }
 
 @conference{
-	PGBGP2,
+	pgbgp2,
 	AUTHOR	= {J. Karlin AND S.Forrest AND J.Rexford},
 	TITLE 	= {Pretty good BGP: Improving BGP by cautiously adopting routes},
 	BOOKTITLE = {14th IEEE International Conference on Network Protocols},
@@ -158,7 +158,7 @@
 	month = {April},
 	doi = {10.1109/NOMS.2004.1317749},
 }
-@misc{uorvp,
+@misc{route-views,
 	key={University of Oregon},
 	title={University of Oregon Route Views Archive Project},
 	howpublished = {\url{http://www.routeviews.org}},
@@ -190,4 +190,41 @@
 	number = {1},
 	pages =	{117--148},
 	year =	{2005},
+}
+@inproceedings{topology-anomaly,
+  author    = {Christopher Kr{\"u}gel and Darren Mutz and William K. Robertson 
+  and Fredrik Valeur},
+  title     = {Topology-Based Detection of Anomalous BGP Messages},
+  booktitle = {RAID},
+  year      = {2003},
+  pages     = {17-35},
+  ee        =
+  {http://springerlink.metapress.com/openurl.asp?genre=article{\&}issn=0302-9743{\&}volume=2820{\&}spage=17},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+@inproceedings{moas,
+	author = {Zhao, Xiaoliang and Pei, Dan and Wang, Lan and Massey, Dan and
+ 	Mankin, Allison and Wu, S. Felix and Zhang, Lixia},
+  	title = {An analysis of BGP multiple origin AS (MOAS) conflicts},
+   	booktitle = {IMW '01: Proceedings of the 1st ACM SIGCOMM Workshop on
+   	Internet Measurement},
+    year = {2001},
+	isbn = {1-58113-435-5},
+	pages = {31--35},
+	location = {San Francisco, California, USA},
+	doi = {http://doi.acm.org/10.1145/505202.505207},
+	publisher = {ACM},
+	address = {New York, NY, USA},
+}
+@inproceedings{whisper,
+ 	author = {Subramanian, Lakshminarayanan and Roth, Volker and Stoica, Ion and
+ 	Shenker, Scott and Katz, Randy H.},
+  	title = {Listen and whisper: security mechanisms for BGP},
+   	booktitle = {NSDI'04: Proceedings of the 1st conference on Symposium on
+   	Networked Systems Design and Implementation},
+    year = {2004},
+	pages = {10--10},
+	location = {San Francisco, California},
+	publisher = {USENIX Association},
+	address = {Berkeley, CA, USA},
 }

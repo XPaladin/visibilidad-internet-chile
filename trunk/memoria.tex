@@ -151,9 +151,7 @@ autentificaci\'on, y otras buenas pr\'acticas. Sin embargo no es posible
 verificar f\'acilmente el contenido de un mensaje BGP (la verificaci\'on 
 completa toma demasiado tiempo)~\cite{BGP-path-stability}, por defecto un 
 router cree la informaci\'on que recibe. Para enfrentar esta situaci\'on, se 
-cre\'o Pretty Good BGP~\cite{PGBGP1,PGBGP2} (PGBGP) un sistema que no conf\'ia 
-autom\'aticamente en las rutas, sino que trata de dar tiempo para saber si son 
-reales antes de anunciarlas c\'omo ruta \'optima.
+cre\'o Pretty Good BGP~\cite{pgbgp0, pgbgp1, pgbgp2} (PGBGP) un sistema que no conf\'ia autom\'aticamente en las rutas, sino que trata de dar tiempo para saber si son reales antes de anunciarlas c\'omo ruta \'optima.
 			
 Todos estos problemas de Internet, ocasionan demoras en el tr\'afico e incluso
 p\'erdida de alcance de algunos destinos. En este trabajo se estudiar\'a hasta 
@@ -275,7 +273,7 @@ redundantes.
 Existen iniciativas p\'ublicas para almacenar la informaci\'on de ruteo, entre
 ellas est\'an los archivos mantenidos por el Proyecto Vista de Rutas de la
 Universidad de Oregon (University of Oregon's Route Views Project)
-~\cite{uorvp}, los archivos RIPE ~\cite{ripe} y el Monitor BGP del MIT
+~\cite{route-views}, los archivos RIPE ~\cite{ripe} y el Monitor BGP del MIT
 ~\cite{bgp-monitor}, estos archivos almacenan la informaci\'on tal como se
 origin\'o, es decir los mensajes de actualizaci\'on, por lo que no es sencillo
 obtener informaci\'on o estad\'isticas de ellos. BGP-Play ~\cite{bgp-play} es
@@ -328,6 +326,25 @@ designar due\~nos de prefijos.
 Desafortunadamente, no es claro como pueden manejar caminos que no pueden ser
 completamente verificados debido a que no todos los ASes han adoptado su
 soluci\'on.
+
+Entre los m\'etodos que detectan anomal\'ias est\'a ~\cite{topology-anomaly},
+que analizando los ``vecinos'' de cada AS detecta rutas falsas, aquellas cuyo
+camino contiene ASes consecutivos que no son vecinos.
+
+Otros trabajos enfocados en la  detecci\'on de anomal\'ias son ~\cite{whisper} 
+y ~\cite{moas}, los cuales usan cierto atributo del anuncio BGP para transmitir
+informaci\'on extra, \'util para sus fines, pero que probablemente ser\'a
+descartada por routers que no tengan implementada su soluci\'on.
+
+Finalmente Pretty Good BGP (PGBGP) ~\cite{pgbgp0, pgbgp1, pgbgp2} se basa en 
+retrasar el momento en que un anuncio es diseminado, baj\'andole la prioridad a
+los anuncios nuevos que recibe, hasta que haya pasado un tiempo razonable para 
+que el administrador se entere que la ruta era inv\'alida. Esto no es lo mismo 
+que ignorar todos los anuncios, pues solamente se cambia la prioridad, si la 
+ruta es la \'unica existente para ese destino, si ser\'a utilizada. Seg\'un sus
+propios experimentos, bastaba con que un porcentaje menor de los ASes
+implementara la soluci\'on para lograr una gran disminuci\'on de los routers
+que cre\'ian las rutas falsas.
 %% PGBGP
 %%CODIGO:
 %http://www.cs.unm.edu/~treport/tr/07-08/pgbgp-adversary.pdf
