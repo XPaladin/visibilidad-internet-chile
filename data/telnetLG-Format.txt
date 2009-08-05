@@ -1,0 +1,7 @@
+Columns:
+1.- CC: Area Code
+2.- BGP Route Server.
+3.- ASN
+4.- RIR: A=ARIN | R=RIPE NCC | P=APNIC | L=LACNIC | F=AFRINIC
+5.- Authorized: Y=yes | N= no | P = pending | F = free | B = bad, not working | ? other
+6.- User required(Optional): U=User | P=Password

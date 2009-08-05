@@ -1,0 +1,29 @@
+AU route-views.optus.net.au AS7474 P P N
+CA route-server-east.gt.ca AS6539 A F N
+CA route-server-west.gt.ca AS6539 A F N
+CA route-server.gt.ca AS6539 A F N
+CA route-views.on.bb.telus.com AS852 A P N
+CA route-views.ab.bb.telus.com AS852 A P N
+CA route-server.videotron.net AS5769 A F N
+CH routeserver.sunrise.ch AS6730 R F N
+DE route-server.belwue.de AS553 R F N
+DE route-views.bmcag.net AS9132 R B N
+DE route-server.tinet.net AS3257 R F N
+EU route-server.eu.gblx.net AS3549 A F N 
+FI route-server.as6667.net AS6667 R N P rviews Rviews
+FR route-server.opentransit.net AS5511 R F P rviews Rviews
+IT route-server.playnet.it AS13284 R F U rviews
+NL grh.sixxs.net AS8298 R F N
+RO route-server.ipilink.net AS30890 R F N
+UK route-server.colt.net AS8220 R B N
+US route-server.ip.att.net AS7018 A F U rviews
+US route-server.cerf.net AS1838 A F N 
+US route-server.gblx.net AS3549 A F N
+US route-server.host.net AS13645 A F N
+US route-server.he.net AS6939 A F N
+US route-views.oregon-ix.net AS3582 A F U rviews
+US route-server.savvis.net AS3561 A B N
+US route-server.twtelecom.net AS4323 A F N
+ZA routeserver.ginx.org.za AS2018 F ? P bgp bgp
+ZA public-route-server.is.co.za AS3741 F ? N
+ZA tpr-route-server.saix.net AS5713 F F P saix saix
